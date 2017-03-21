@@ -98,15 +98,7 @@ def plot_results(ages, subsidence, thickness_list, sea_levels, bathymetries):
     xy[0, 1] = xy[-1, 1] = 0.0
     patches[-1].set_xy(xy)
 
-    p = PatchCollection(patches, cmap=discrete_cmap(n_patches, 'terrain'), alpha=0.7)
+    p = PatchCollection(patches, cmap='terrain', alpha=0.7)
     p.set_array(np.arange(n_patches))
     axes.add_collection(p)
     plt.show()
-
-
-def discrete_cmap(N, base_cmap=None):
-    """ Create an N-bin discrete colormap from the specified input map. """
-    base = plt.cm.get_cmap(base_cmap)
-    color_list = base(np.linspace(0, 1, N))
-    cmap_name = base.name + str(N)
-    return LinearSegmentedColormap.from_list(cmap_name, color_list, N)
